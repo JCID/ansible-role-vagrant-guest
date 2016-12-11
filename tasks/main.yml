@@ -1,0 +1,14 @@
+---
+- name:             Zorgen dat we direct sudo -s uitvoeen
+  lineinfile:       dest=/home/vagrant/.bash_profile
+                    line="sudo -s"
+
+- name:             Toestaan dat vagrant gebruiker alles mag
+  lineinfile:       'dest=/etc/sudoers
+                    line="vagrant    ALL=(ALL)    NOPASSWD: ALL"'
+
+- name:             Symlink local bestand
+  file:             src=/usr/share/zoneinfo/Europe/Amsterdam
+                    dest=/etc/localtime
+                    state=link
+                    force=yes
